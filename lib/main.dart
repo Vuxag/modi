@@ -17,28 +17,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Initialize dependencies
-    final dio = Dio(BaseOptions(
-      baseUrl: 'https://api.example.com/v1',
-      connectTimeout: const Duration(seconds: 5),
-      receiveTimeout: const Duration(seconds: 3),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-    ));
+    final dio = Dio();
+    final apiClient = ApiClient(
+      dio,
+      baseUrl: 'https://api.example.com', // Replace with your API base URL
+    );
 
-    // Add logging interceptor in debug mode
-    assert(() {
-      dio.interceptors.add(LogInterceptor(
-        requestBody: true,
-        responseBody: true,
-      ));
-      return true;
-    }());
-
-    final apiClient = ApiClient(dio);
-
-    // Initialize controllers
+    // Register dependencies
+    Get.put(apiClient);
     Get.put(AuthController(apiClient));
     Get.put(ServicesController(apiClient));
     Get.put(TagsController(apiClient));
