@@ -1,65 +1,59 @@
 import 'package:get/get.dart';
 import 'package:local_services_marketplace/core/network/api_client.dart';
+import 'package:local_services_marketplace/core/routes/app_routes.dart';
 import 'package:local_services_marketplace/shared/models/user_model.dart';
 
 class AuthController extends GetxController {
   final ApiClient _apiClient;
-  final Rx<User?> currentUser = Rx<User?>(null);
-  final RxBool isLoading = false.obs;
+  final email = ''.obs;
+  final password = ''.obs;
+  final isLoading = false.obs;
+  final error = ''.obs;
 
   AuthController(this._apiClient);
 
-  Future<void> login(String email, String password) async {
+  Future<void> login() async {
     try {
       isLoading.value = true;
+      error.value = '';
+
       final response = await _apiClient.login({
-        'email': email,
-        'password': password,
+        'email': email.value,
+        'password': password.value,
       });
 
-      // Store token
-      // Navigate to home
+      // TODO: Store token and user data
+      Get.offAllNamed(Routes.SERVICES);
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      error.value = e.toString();
     } finally {
       isLoading.value = false;
     }
   }
 
-  Future<void> register(Map<String, dynamic> userData) async {
+  Future<void> register(String name, String email, String password) async {
     try {
       isLoading.value = true;
-      final user = await _apiClient.register(userData);
-      currentUser.value = user;
+      error.value = '';
 
-      // Navigate to home
+      final user = await _apiClient.register({
+        'name': name,
+        'email': email,
+        'password': password,
+      });
+
+      // TODO: Store token and user data
+      Get.offAllNamed(Routes.SERVICES);
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      error.value = e.toString();
     } finally {
       isLoading.value = false;
     }
   }
 
   Future<void> logout() async {
-    try {
-      // Clear token
-      currentUser.value = null;
-      // Navigate to login
-    } catch (e) {
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-      );
-    }
+    // TODO: Clear token and user data
+    Get.offAllNamed(Routes.LOGIN);
   }
 
   Future<void> verifyPhone(String phone, String code) async {

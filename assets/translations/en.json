@@ -1,0 +1,104 @@
+{
+  "app": {
+    "name": "Local Services Marketplace"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "retry": "Retry"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "forgot_password": "Forgot Password?",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "phone": "Phone Number",
+    "name": "Full Name",
+    "logout": "Logout"
+  },
+  "services": {
+    "title": "Services",
+    "details": "Service Details",
+    "provider": "Service Provider",
+    "location": "Location",
+    "price": "Price",
+    "rating": "Rating",
+    "reviews": "Reviews",
+    "description": "Description",
+    "tags": "Tags"
+  },
+  "bookings": {
+    "title": "Bookings",
+    "details": "Booking Details",
+    "status": "Status",
+    "date": "Date",
+    "time": "Time",
+    "price": "Price",
+    "payment": "Payment",
+    "cancel": "Cancel Booking",
+    "reschedule": "Reschedule"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "add": "Add Review",
+    "edit": "Edit Review",
+    "rating": "Rating",
+    "comment": "Comment",
+    "tags": "Tags",
+    "reply": "Reply",
+    "report": "Report"
+  },
+  "payments": {
+    "title": "Payments",
+    "method": "Payment Method",
+    "status": "Status",
+    "amount": "Amount",
+    "date": "Date",
+    "details": "Payment Details",
+    "history": "Payment History",
+    "installments": "Installments"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit": "Edit Profile",
+    "settings": "Settings",
+    "notifications": "Notifications",
+    "language": "Language",
+    "theme": "Theme",
+    "help": "Help & Support",
+    "about": "About"
+  },
+  "errors": {
+    "network": "Network error. Please check your connection.",
+    "server": "Server error. Please try again later.",
+    "auth": "Authentication error. Please login again.",
+    "validation": "Please check your input.",
+    "unknown": "An unknown error occurred."
+  },
+  "success": {
+    "login": "Login successful",
+    "register": "Registration successful",
+    "booking": "Booking successful",
+    "payment": "Payment successful",
+    "review": "Review submitted successfully",
+    "profile_update": "Profile updated successfully"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalid_email": "Please enter a valid email",
+    "invalid_phone": "Please enter a valid phone number",
+    "invalid_password": "Password must be at least 6 characters",
+    "password_mismatch": "Passwords do not match",
+    "min_length": "Must be at least {min} characters",
+    "max_length": "Must be at most {max} characters"
+  }
+} 
