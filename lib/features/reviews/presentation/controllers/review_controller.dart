@@ -74,12 +74,12 @@ class ReviewController extends GetxController {
     try {
       isCreatingReview.value = true;
       error.value = null;
-      final review = await _apiClient.createReview(
-        serviceId: serviceId,
-        rating: rating,
-        comment: comment,
-        tags: tags,
-      );
+      final review = await _apiClient.createReview({
+        'serviceId': serviceId,
+        'rating': rating,
+        'comment': comment,
+        'tags': tags,
+      });
       reviews.add(review);
       Get.snackbar(
         'Success',
@@ -111,27 +111,13 @@ class ReviewController extends GetxController {
     try {
       isReplying.value = true;
       error.value = null;
-      final reply = await _apiClient.replyToReview(
-        reviewId: reviewId,
-        comment: comment,
+      final updatedReview = await _apiClient.replyToReview(
+        reviewId,
+        {'comment': comment},
       );
       final index = reviews.indexWhere((r) => r.id == reviewId);
       if (index != -1) {
-        final updatedReview = reviews[index];
-        reviews[index] = Review(
-          id: updatedReview.id,
-          serviceId: updatedReview.serviceId,
-          userId: updatedReview.userId,
-          userName: updatedReview.userName,
-          userAvatarUrl: updatedReview.userAvatarUrl,
-          rating: updatedReview.rating,
-          comment: updatedReview.comment,
-          tags: updatedReview.tags,
-          media: updatedReview.media,
-          reply: reply,
-          createdAt: updatedReview.createdAt,
-          updatedAt: DateTime.now(),
-        );
+        reviews[index] = updatedReview;
       }
       Get.snackbar(
         'Success',
@@ -163,9 +149,9 @@ class ReviewController extends GetxController {
     try {
       isReporting.value = true;
       error.value = null;
-      await _apiClient.reportReview(
-        reviewId: reviewId,
-        reason: reason,
+      await _apiClient.addReviewMedia(
+        reviewId,
+        {'type': 'report', 'reason': reason},
       );
       Get.snackbar(
         'Success',
